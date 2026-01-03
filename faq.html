@@ -139,4 +139,395 @@
       display: block;
     }
     
-    .faq-
+    .faq-answer ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+    
+    .faq-answer li {
+      margin-bottom: 8px;
+    }
+    
+    .contact-cta {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    
+    .contact-cta h3 {
+      color: white;
+      margin-bottom: 15px;
+    }
+    
+    .contact-cta .btn {
+      background: white;
+      color: #2563eb;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      transition: transform 0.3s;
+    }
+    
+    .contact-cta .btn:hover {
+      transform: translateY(-3px);
+    }
+    
+    .whatsapp-fixed {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+      z-index: 1000;
+      transition: transform 0.3s;
+      text-decoration: none;
+    }
+    
+    .whatsapp-fixed:hover {
+      transform: scale(1.1);
+    }
+    
+    @media (max-width: 768px) {
+      .faq-container {
+        padding: 20px;
+      }
+      
+      .faq-header h1 {
+        font-size: 2rem;
+      }
+      
+      .whatsapp-fixed {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Simple -->
+  <header class="site-header" style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+      <a href="index.html" style="color: white; text-decoration: none; font-size: 1.5rem; font-weight: bold;">
+        <i class="fas fa-microchip"></i> Boutique<span style="color: #f59e0b;">Électronique</span>
+      </a>
+      
+      <nav style="display: flex; gap: 20px;">
+        <a href="index.html" style="color: white; text-decoration: none;">Accueil</a>
+        <a href="produits.html" style="color: white; text-decoration: none;">Produits</a>
+        <a href="contact.html" style="color: white; text-decoration: none;">Contact</a>
+        <a href="faq.html" style="color: #f59e0b; text-decoration: none;">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="faq-container">
+      <div class="faq-header">
+        <h1><i class="fas fa-question-circle"></i> Foire Aux Questions</h1>
+        <p>Trouvez rapidement des réponses à vos questions les plus fréquentes</p>
+        
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="faq-search" placeholder="Rechercher dans les FAQ...">
+        </div>
+      </div>
+      
+      <div class="faq-categories">
+        <button class="category-btn active" data-category="all">Toutes les questions</button>
+        <button class="category-btn" data-category="commande">Commandes</button>
+        <button class="category-btn" data-category="livraison">Livraison</button>
+        <button class="category-btn" data-category="paiement">Paiement</button>
+        <button class="category-btn" data-category="produits">Produits</button>
+        <button class="category-btn" data-category="support">Support</button>
+      </div>
+      
+      <!-- FAQ Items -->
+      <div class="faq-list">
+        <!-- Commandes -->
+        <div class="faq-item active" data-category="commande">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Comment passer commande ?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Vous pouvez passer commande de plusieurs façons :</p>
+            <ul>
+              <li><strong>Via WhatsApp :</strong> Cliquez sur "Commander" sur la fiche d'un produit</li>
+              <li><strong>Par téléphone :</strong> Appelez-nous au +227 93 03 31 58</li>
+              <li><strong>En magasin :</strong> Venez nous voir à Niamey</li>
+              <li><strong>Par email :</strong> Envoyez-nous votre liste à voltsniger@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-category="commande">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Puis-je modifier ou annuler ma commande ?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Oui, vous pouvez modifier ou annuler votre commande tant qu'elle n'a pas été expédiée.</p>
+            <p><strong>Pour modifier :</strong> Contactez-nous rapidement par WhatsApp ou téléphone.</p>
+            <p><strong>Pour annuler :</strong> Contactez-nous au plus tôt. Les annulations sont gratuites avant expédition.</p>
+          </div>
+        </div>
+        
+        <!-- Livraison -->
+        <div class="faq-item" data-category="livraison">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Quels sont les délais de livraison ?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Les délais varient selon votre localisation :</p>
+            <ul>
+              <li><strong>Niamey :</strong> 24-48 heures (gratuit)</li>
+              <li><strong>Banlieue de Niamey :</strong> 2-3 jours</li>
+              <li><strong>Autres villes :</strong> 3-7 jours (sur devis)</li>
+              <li><strong>Livraison express :</strong> Disponible sur demande (supplément)</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-category="livraison">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Livrez-vous partout au Niger ?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Oui, nous livrons dans tout le Niger !</p>
+            <p><strong>Tarifs :</strong> Les frais de livraison varient selon la distance. Contactez-nous pour un devis personnalisé.</p>
+            <p><strong>Méthodes :</strong> Nous utilisons des transporteurs locaux fiables pour assurer la sécurité de vos produits.</p>
+            <p><strong>Suivi :</strong> Vous recevez un numéro de suivi par SMS/WhatsApp.</p>
+          </div>
+        </div>
+        
+        <!-- Paiement -->
+        <div class="faq-item" data-category="paiement">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Quels moyens de paiement acceptez-vous ?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Nous acceptons plusieurs modes de paiement :</p>
+            <ul>
+              <li><strong>Espèces :</strong> À la livraison (Niamey seulement)</li>
+              <li><strong>Orange Money :</strong> 93 03 31 58</li>
+              <li><strong>Moov Money :</strong> 89 63 15 95</li>
+              <li><strong>Virement bancaire :</strong> Coordonnées sur demande</li>
+              <li><strong>Paiement WhatsApp :</strong> Directement via l'application</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-category="paiement">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            La livraison est-elle payante ?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p><strong>Livraison gratuite :</strong> Pour toutes les commandes à Niamey.</p>
+            <p><strong>Autres villes :</strong> Frais de livraison calculés selon la distance.</p>
+            <p><strong>Offre spéciale :</strong> Livraison gratuite pour les commandes supérieures à 50 000 FCFA dans tout le Niger.</p>
+          </div>
+        </div>
+        
+        <!-- Produits -->
+        <div class="faq-item" data-category="produits">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Proposez-vous une garantie sur les produits ?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Oui, tous nos produits bénéficient d'une garantie :</p>
+            <ul>
+              <li><strong>Garantie fabricant :</strong> 3 mois contre les défauts</li>
+              <li><strong>Support technique :</strong> 1 mois gratuit après l'achat</li>
+              <li><strong>Échange :</strong> Sous 7 jours si produit défectueux</li>
+              <li><strong>Test avant expédition :</strong> Tous nos produits sont testés</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-category="produits">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Que faire si je reçois un produit défectueux ?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Contactez-nous immédiatement :</p>
+            <ol>
+              <li>Prenez des photos du produit et du problème</li>
+              <li>Contactez-nous par WhatsApp avec les photos</li>
+              <li>Nous organiserons l'échange ou le remboursement</li>
+              <li>Pour les échanges, nous venons récupérer le produit défectueux</li>
+            </ol>
+            <p><strong>Délai :</strong> Signalement sous 7 jours après réception.</p>
+          </div>
+        </div>
+        
+        <!-- Support -->
+        <div class="faq-item" data-category="support">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Proposez-vous un support technique ?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Oui, nous offrons un support technique complet :</p>
+            <ul>
+              <li><strong>Conseil avant achat :</strong> Nous vous aidons à choisir les bons composants</li>
+              <li><strong>Installation :</strong> Guides et assistance pour monter vos projets</li>
+              <li><strong>Dépannage :</strong> Aide à résoudre les problèmes techniques</li>
+              <li><strong>Formation :</strong> Conseils pour bien utiliser nos produits</li>
+            </ul>
+            <p><strong>Contact support :</strong> WhatsApp au +227 93 03 31 58</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-category="support">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Puis-je consulter des tutoriels ou documentations ?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Oui, nous fournissons différentes ressources :</p>
+            <ul>
+              <li><strong>Fiches techniques :</strong> Pour chaque produit sur notre site</li>
+              <li><strong>Vidéos tutoriels :</strong> Sur notre chaîne YouTube (à venir)</li>
+              <li><strong>Guides PDF :</strong> Disponibles sur demande</li>
+              <li><strong>Exemples de code :</strong> Pour Arduino, ESP32, etc.</li>
+              <li><strong>Schémas de montage :</strong> Pour les projets complexes</li>
+            </ul>
+            <p>Demandez-nous les ressources dont vous avez besoin !</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CTA Contact -->
+      <div class="contact-cta">
+        <h3>Vous ne trouvez pas la réponse à votre question ?</h3>
+        <p>Notre équipe est là pour vous aider. Contactez-nous directement et nous vous répondrons rapidement.</p>
+        <a href="contact.html" class="btn">
+          <i class="fas fa-envelope"></i> Contactez-nous
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- WhatsApp Fixe -->
+  <a href="https://wa.me/22793033158" class="whatsapp-fixed" target="_blank" title="Contact WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Footer Simple -->
+  <footer style="background: #1f2937; color: white; padding: 40px 0; margin-top: 60px;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
+        <div>
+          <h4 style="color: #f59e0b; margin-bottom: 15px;">Boutique Électronique</h4>
+          <p>Composants électroniques à Niamey depuis 2023.</p>
+        </div>
+        
+        <div>
+          <h4 style="color: #f59e0b; margin-bottom: 15px;">Contact rapide</h4>
+          <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +227 93 03 31 58</p>
+          <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> voltsniger@gmail.com</p>
+        </div>
+        
+        <div>
+          <h4 style="color: #f59e0b; margin-bottom: 15px;">Liens utiles</h4>
+          <p><a href="index.html" style="color: white; text-decoration: none;">Accueil</a></p>
+          <p><a href="produits.html" style="color: white; text-decoration: none;">Produits</a></p>
+          <p><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></p>
+          <p><a href="faq.html" style="color: #f59e0b; text-decoration: none;">FAQ</a></p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; padding-top: 20px; border-top: 1px solid #374151; color: #9ca3af;">
+        <p>&copy; 2024 Boutique Électronique Niger. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Recherche dans les FAQ
+      const searchInput = document.getElementById('faq-search');
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          const searchTerm = this.value.toLowerCase().trim();
+          
+          faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question').textContent.toLowerCase();
+            const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+            
+            if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+              item.style.display = 'block';
+              
+              // Ouvrir l'item si recherche
+              if (searchTerm) {
+                item.classList.add('active');
+              }
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      }
+      
+      // Filtrage par catégorie
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Mettre à jour les boutons actifs
+          categoryButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          const category = this.dataset.category;
+          
+          // Filtrer les FAQ
+          faqItems.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+      
+      // Ouvrir tous les items FAQ au chargement
+      faqItems.forEach(item => {
+        item.classList.add('active');
+      });
+    });
+    
+    // Fonction pour ouvrir/fermer les FAQ
+    function toggleFAQ(element) {
+      const faqItem = element.closest('.faq-item');
+      faqItem.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
