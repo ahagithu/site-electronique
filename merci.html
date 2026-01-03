@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Merci — Boutique Électronique</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Merci pour votre message. Nous vous répondrons rapidement." />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    .merci-container {
+      text-align: center;
+      padding: 80px 20px;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .merci-icon {
+      font-size: 80px;
+      color: #10b981;
+      margin-bottom: 30px;
+      animation: bounce 1s ease infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .merci-message h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #1f2937;
+    }
+    
+    .merci-message p {
+      font-size: 1.2rem;
+      color: #6b7280;
+      margin-bottom: 30px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    
+    .countdown {
+      font-size: 1.1rem;
+      color: #2563eb;
+      margin: 20px 0;
+      font-weight: bold;
+      padding: 10px 20px;
+      background: #e0f2fe;
+      border-radius: 50px;
+      display: inline-block;
+    }
+    
+    .next-steps {
+      background: #f0f9ff;
+      border-radius: 15px;
+      padding: 30px;
+      margin: 40px auto;
+      max-width: 800px;
+      text-align: left;
+    }
+    
+    .next-steps h3 {
+      color: #2563eb;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .step {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .step-icon {
+      width: 50px;
+      height: 50px;
+      background: #e0f2fe;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2563eb;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .step h4 {
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+    
+    .step p {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    
+    .btn {
+      padding: 15px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.3s;
+    }
+    
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #1d4ed8;
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    .btn-secondary {
+      background: #10b981;
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: #0da271;
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    .btn-outline {
+      background: white;
+      color: #2563eb;
+      border: 2px solid #2563eb;
+    }
+    
+    .btn-outline:hover {
+      background: #2563eb;
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    @media (max-width: 768px) {
+      .merci-icon {
+        font-size: 60px;
+      }
+      
+      .merci-message h1 {
+        font-size: 2rem;
+      }
+      
+      .steps {
+        grid-template-columns: 1fr;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+    }
+  </style>
+  
+  <!-- Redirection automatique après 8 secondes -->
+  <meta http-equiv="refresh" content="8; url=index.html">
+</head>
+<body>
+  <!-- Header Simple -->
+  <header class="site-header" style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+      <a href="index.html" style="color: white; text-decoration: none; font-size: 1.5rem; font-weight: bold;">
+        <i class="fas fa-microchip"></i> Boutique<span style="color: #f59e0b;">Électronique</span>
+      </a>
+      
+      <nav style="display: flex; gap: 20px;">
+        <a href="index.html" style="color: white; text-decoration: none;">Accueil</a>
+        <a href="produits.html" style="color: white; text-decoration: none;">Produits</a>
+        <a href="contact.html" style="color: white; text-decoration: none;">Contact</a>
+        <a href="faq.html" style="color: white; text-decoration: none;">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="merci-container">
+      <div class="merci-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      
+      <div class="merci-message">
+        <h1>Message envoyé avec succès !</h1>
+        <p>Merci de nous avoir contactés. Votre message a bien été reçu et sera traité dans les plus brefs délais. Nous vous répondrons par email ou par téléphone.</p>
+        
+        <div class="countdown" id="countdown">
+          <i class="fas fa-clock"></i> Redirection vers l'accueil dans <span id="seconds">8</span> secondes...
+        </div>
+      </div>
+      
+      <div class="next-steps">
+        <h3><i class="fas fa-road"></i> Prochaines étapes</h3>
+        <p>Voici ce qui va se passer maintenant :</p>
+        
+        <div class="steps">
+          <div class="step">
+            <div class="step-icon">
+              <i class="fas fa-envelope-open"></i>
+            </div>
+            <h4>1. Accusé de réception</h4>
+            <p>Vous recevrez un email de confirmation automatique</p>
+          </div>
+          
+          <div class="step">
+            <div class="step-icon">
+              <i class="fas fa-user-check"></i>
+            </div>
+            <h4>2. Traitement</h4>
+            <p>Notre équipe examine votre demande attentivement</p>
+          </div>
+          
+          <div class="step">
+            <div class="step-icon">
+              <i class="fas fa-reply"></i>
+            </div>
+            <h4>3. Réponse</h4>
+            <p>Nous vous répondons sous 24 à 48 heures maximum</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cta-buttons">
+        <a href="index.html" class="btn btn-primary">
+          <i class="fas fa-home"></i> Retour à l'accueil
+        </a>
+        <a href="produits.html" class="btn btn-secondary">
+          <i class="fas fa-shopping-bag"></i> Voir nos produits
+        </a>
+        <a href="contact.html" class="btn btn-outline">
+          <i class="fas fa-envelope"></i> Nouveau message
+        </a>
+      </div>
+      
+      <!-- Urgence -->
+      <div style="margin-top: 40px; padding: 20px; background: #fef3c7; border-radius: 10px; max-width: 600px;">
+        <h4 style="color: #92400e; display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <i class="fas fa-exclamation-triangle"></i> Besoin d'une réponse rapide ?
+        </h4>
+        <p style="color: #92400e; margin: 0; font-size: 0.9rem;">
+          Pour une demande urgente, contactez-nous directement par WhatsApp : 
+          <a href="https://wa.me/22793033158" style="color: #dc2626; font-weight: bold; text-decoration: none;">
+            +227 93 03 31 58
+          </a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Simple -->
+  <footer style="background: #1f2937; color: white; padding: 40px 0; margin-top: 60px;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
+        <div>
+          <h4 style="color: #f59e0b; margin-bottom: 15px;">Boutique Électronique</h4>
+          <p>Composants électroniques à Niamey depuis 2023.</p>
+        </div>
+        
+        <div>
+          <h4 style="color: #f59e0b; margin-bottom: 15px;">Contact rapide</h4>
+          <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +227 93 03 31 58</p>
+          <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> voltsniger@gmail.com</p>
+        </div>
+        
+        <div>
+          <h4 style="color: #f59e0b; margin-bottom: 15px;">Liens utiles</h4>
+          <p><a href="index.html" style="color: white; text-decoration: none;">Accueil</a></p>
+          <p><a href="produits.html" style="color: white; text-decoration: none;">Produits</a></p>
+          <p><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></p>
+          <p><a href="faq.html" style="color: white; text-decoration: none;">FAQ</a></p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; padding-top: 20px; border-top: 1px solid #374151; color: #9ca3af;">
+        <p>&copy; 2024 Boutique Électronique Niger. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Compte à rebours
+      let seconds = 8;
+      const countdownElement = document.getElementById('seconds');
+      
+      const countdownInterval = setInterval(() => {
+        seconds--;
+        if (countdownElement) {
+          countdownElement.textContent = seconds;
+        }
+        
+        if (seconds <= 0) {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+      
+      // Animation d'entrée
+      const elements = document.querySelectorAll('.merci-icon, .merci-message, .next-steps, .cta-buttons');
+      elements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          el.style.transition = 'opacity 0.5s, transform 0.5s';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 200 * index);
+      });
+    });
+    
+    // Permettre d'annuler la redirection
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const countdown = document.getElementById('countdown');
+        if (countdown) {
+          countdown.innerHTML = '<i class="fas fa-check"></i> Redirection annulée. Vous pouvez naviguer manuellement.';
+        }
+        clearTimeout(window.redirectTimeout);
+      }
+    });
+  </script>
+</body>
+</html>
