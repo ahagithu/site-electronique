@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr" data-page="categories">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catégories - Boutique Électronique</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <i class="fas fa-microchip"></i>
+        <span>Boutique<span style="color: #f59e0b;">Électronique</span></span>
+      </a>
+      
+      <button class="menu-toggle" aria-label="Menu principal">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav class="site-nav">
+        <a href="index.html">
+          <i class="fas fa-home"></i> Accueil
+        </a>
+        <a href="produits.html">
+          <i class="fas fa-shopping-bag"></i> Produits
+        </a>
+        <a href="categories.html" class="active">
+          <i class="fas fa-th"></i> Catégories
+        </a>
+        <a href="devis.html">
+          <i class="fas fa-file-invoice"></i> Devis
+        </a>
+        <a href="contact.html">
+          <i class="fas fa-envelope"></i> Contact
+        </a>
+        <a href="panier.html" class="cart-link">
+          <i class="fas fa-shopping-cart"></i> Panier
+          <span class="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title"><i class="fas fa-th"></i> Nos Catégories de Produits</h1>
+    
+    <div class="categories-grid-large">
+      <a href="produits.html?category=microcontroleurs" class="category-card-large">
+        <div class="category-icon">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <h3>Microcontrôleurs</h3>
+        <p>ESP32, Arduino, Raspberry Pi, STM32 pour tous vos projets IoT et embarqués</p>
+        <span class="category-count">12 produits</span>
+      </a>
+      
+      <a href="produits.html?category=communication" class="category-card-large">
+        <div class="category-icon">
+          <i class="fas fa-wifi"></i>
+        </div>
+        <h3>Communication sans fil</h3>
+        <p>Modules WiFi, Bluetooth, LoRa, GSM, RF pour la connectivité</p>
+        <span class="category-count">8 produits</span>
+      </a>
+      
+      <a href="produits.html?category=capteurs" class="category-card-large">
+        <div class="category-icon">
+          <i class="fas fa-thermometer-half"></i>
+        </div>
+        <h3>Capteurs</h3>
+        <p>Température, humidité, mouvement, lumière, gaz, etc.</p>
+        <span class="category-count">15 produits</span>
+      </a>
+      
+      <a href="produits.html?category=moteurs" class="category-card-large">
+        <div class="category-icon">
+          <i class="fas fa-cog"></i>
+        </div>
+        <h3>Moteurs & Contrôle</h3>
+        <p>Moteurs DC, pas-à-pas, servos, drivers L298N, L293D</p>
+        <span class="category-count">10 produits</span>
+      </a>
+      
+      <a href="produits.html?category=alimentation" class="category-card-large">
+        <div class="category-icon">
+          <i class="fas fa-battery-full"></i>
+        </div>
+        <h3>Alimentation</h3>
+        <p>Alimentations, régulateurs, batteries, chargeurs, convertisseurs</p>
+        <span class="category-count">7 produits</span>
+      </a>
+      
+      <a href="produits.html?category=accessoires" class="category-card-large">
+        <div class="category-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <h3>Accessoires & Outils</h3>
+        <p>Câbles, breadboards, fer à souder, multimètres, boîtiers</p>
+        <span class="category-count">20 produits</span>
+      </a>
+    </div>
+    
+    <section class="section">
+      <h2>Produits par catégorie</h2>
+      
+      <div id="categorie-microcontroleurs" class="categorie-section">
+        <h3><i class="fas fa-microchip"></i> Microcontrôleurs</h3>
+        <div class="produits-grid">
+          <!-- Chargé par JavaScript -->
+        </div>
+        <a href="produits.html?category=microcontroleurs" class="btn btn-outline">
+          Voir tous les microcontrôleurs <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div id="categorie-communication" class="categorie-section">
+        <h3><i class="fas fa-wifi"></i> Communication</h3>
+        <div class="produits-grid">
+          <!-- Chargé par JavaScript -->
+        </div>
+        <a href="produits.html?category=communication" class="btn btn-outline">
+          Voir tous les modules de communication <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h4><i class="fas fa-store"></i> Notre Boutique</h4>
+          <p>Composants électroniques à Niamey depuis 2023</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-link"></i> Liens Rapides</h4>
+          <a href="index.html">Accueil</a>
+          <a href="produits.html">Produits</a>
+          <a href="categories.html">Catégories</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-headset"></i> Support</h4>
+          <a href="faq.html">FAQ</a>
+          <a href="livraison.html">Livraison</a>
+          <a href="cgv.html">Conditions</a>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-map-marker-alt"></i> Contact</h4>
+          <p><i class="fas fa-map-pin"></i> Niamey, Niger</p>
+          <p><i class="fas fa-phone"></i> +227 93 03 31 58</p>
+          <p><i class="fas fa-phone"></i> +227 89 63 15 95</p>
+          <p><i class="fas fa-envelope"></i> voltsniger@gmail.com</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Boutique Électronique Niger</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+      try {
+        const response = await fetch('produits.json');
+        const data = await response.json();
+        
+        // Afficher les produits par catégorie
+        const categories = ['microcontroleurs', 'communication'];
+        
+        categories.forEach(category => {
+          const produitsCategorie = data.produits.filter(p => p.categorie === category).slice(0, 4);
+          const container = document.querySelector(`#categorie-${category} .produits-grid`);
+          
+          if (container && produitsCategorie.length > 0) {
+            container.innerHTML = produitsCategorie.map(produit => `
+              <div class="produit-card">
+                <img src="${produit.images[0]}" alt="${produit.nom}" class="produit-image">
+                <div class="produit-info">
+                  <h3>${produit.nom}</h3>
+                  <div class="produit-price">${produit.prix.toLocaleString()} ${produit.devise}</div>
+                  <a href="produit.html?id=${produit.id}" class="btn btn-sm btn-primary">
+                    Voir détails
+                  </a>
+                </div>
+              </div>
+            `).join('');
+          }
+        });
+        
+        mettreAJourCompteurPanier();
+        
+      } catch (error) {
+        console.error('Erreur:', error);
+      }
+    });
+  </script>
+</body>
+</html>
