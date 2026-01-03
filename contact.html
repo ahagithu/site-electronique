@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact — Boutique Électronique</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Contactez-nous pour vos commandes et questions techniques. Basés à Niamey, Niger." />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 30px 0;
+    }
+    
+    .contact-info {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      padding: 40px;
+      border-radius: 15px;
+    }
+    
+    .contact-info h2 {
+      color: white;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .contact-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    
+    .contact-details h4 {
+      margin: 0 0 5px 0;
+      font-size: 1.1rem;
+    }
+    
+    .contact-details p, .contact-details a {
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .contact-details a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: transform 0.3s;
+    }
+    
+    .whatsapp-btn:hover {
+      transform: translateY(-3px);
+      color: white;
+    }
+    
+    .contact-form {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .form-submit {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s;
+    }
+    
+    .form-submit:hover {
+      background: #1d4ed8;
+    }
+    
+    .form-note {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f0f9ff;
+      border-radius: 8px;
+      color: #0369a1;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Simple -->
+  <header class="site-header" style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+      <a href="index.html" style="color: white; text-decoration: none; font-size: 1.5rem; font-weight: bold;">
+        <i class="fas fa-microchip"></i> Boutique<span style="color: #f59e0b;">Électronique</span>
+      </a>
+      
+      <nav style="display: flex; gap: 20px;">
+        <a href="index.html" style="color: white; text-decoration: none;">Accueil</a>
+        <a href="produits.html" style="color: white; text-decoration: none;">Produits</a>
+        <a href="contact.html" style="color: #f59e0b; text-decoration: none;">Contact</a>
+        <a href="faq.html" style="color: white; text-decoration: none;">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 style="text-align: center; margin: 40px 0 20px 0; color: #1f2937;">Contactez-nous</h1>
+    <p style="text-align: center; color: #6b7280; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+      Nous sommes à votre écoute pour toutes vos questions, commandes ou demandes de support technique.
+    </p>
+    
+    <div class="contact-container">
+      <!-- Informations de contact -->
+      <div class="contact-info">
+        <h2><i class="fas fa-map-marker-alt"></i> Nos coordonnées</h2>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-pin"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Adresse</h4>
+            <p>Niamey, Niger</p>
+            <small>Livraison disponible dans toute la ville</small>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Téléphone / WhatsApp</h4>
+            <p><a href="https://wa.me/22793033158">+227 93 03 31 58</a></p>
+            <p><a href="https://wa.me/22789631595">+227 89 63 15 95</a></p>
+            
+            <a href="https://wa.me/22793033158" class="whatsapp-btn" target="_blank">
+              <i class="fab fa-whatsapp"></i> Écrivez-nous sur WhatsApp
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Email</h4>
+            <p><a href="mailto:voltsniger@gmail.com">voltsniger@gmail.com</a></p>
+            <p><a href="mailto:adamoualhou25@gmail.com">adamoualhou25@gmail.com</a></p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Horaires d'ouverture</h4>
+            <p>Lundi - Dimanche: 8h00 - 20h00</p>
+            <small>Commandes WhatsApp acceptées 24h/24</small>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Formulaire de contact -->
+      <div class="contact-form">
+        <h2 style="color: #1f2937; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;">
+          <i class="fas fa-paper-plane"></i> Envoyez-nous un message
+        </h2>
+        
+        <form action="https://formspree.io/f/mdkdblzw" method="POST">
+          <input type="hidden" name="_subject" value="Nouveau message - Site Boutique Électronique" />
+          <input type="hidden" name="_redirect" value="merci.html" />
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nom">Nom complet *</label>
+              <input type="text" id="nom" name="nom" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" class="form-control">
+          </div>
+          
+          <div class="form-group">
+            <label for="sujet">Sujet *</label>
+            <select id="sujet" name="sujet" class="form-control" required>
+              <option value="">Sélectionnez un sujet</option>
+              <option value="commande">Commande de produits</option>
+              <option value="devis">Demande de devis</option>
+              <option value="support">Support technique</option>
+              <option value="partenariat">Proposition de partenariat</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" class="form-control" required></textarea>
+          </div>
+          
+          <button type="submit" class="form-submit">
+            <i class="fas fa-paper-plane"></i> Envoyer le message
+          </button>
+          
+          <div class="form-note">
+            <i class="fas fa-info-circle"></i>
+            Nous vous répondrons dans les plus brefs délais. Pour les urgences, contactez-nous directement par WhatsApp.
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Carte Google Maps -->
+    <div style="margin: 60px 0;">
+      <h2 style="text-align: center; margin-bottom: 30px; color: #1f2937;">
+        <i class="fas fa-map"></i> Notre zone de livraison
+      </h2>
+      
+      <div style="background: #f3f4f6; padding: 30px; border-radius: 15px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+          <div>
+            <h3 style="color: #2563eb; margin-bottom: 20px;">Zone de livraison Niamey</h3>
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+                <i class="fas fa-check-circle" style="color: #10b981; margin-right: 10px;"></i>
+                <strong>Livraison gratuite</strong> dans tout Niamey
+              </li>
+              <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+                <i class="fas fa-check-circle" style="color: #10b981; margin-right: 10px;"></i>
+                <strong>Délai:</strong> 24-48 heures
+              </li>
+              <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+                <i class="fas fa-check-circle" style="color: #10b981; margin-right: 10px;"></i>
+                <strong>Livraison express:</strong> Sur demande
+              </li>
+              <li style="padding: 10px 0;">
+                <i class="fas fa-check-circle" style="color: #10b981; margin-right: 10px;"></i>
+                <strong>Autres villes:</strong> Sur devis
+              </li>
+            </ul>
+          </div>
+          
+          <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <div style="height: 200px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #0369a1; font-weight: bold; font-size: 1.2rem;">
+              <i class="fas fa-map-marker-alt" style="font-size: 2rem; margin-right: 10px;"></i>
+              Zone de couverture Niamey
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Simple -->
+  <footer style="background: #1f2937; color: white; padding: 40px 0; margin-top: 60px;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
+        <div>
+          <h4 style="color: #f59e0b; margin-bottom: 15px;">Boutique Électronique</h4>
+          <p>Composants électroniques à Niamey depuis 2023.</p>
+        </div>
+        
+        <div>
+          <h4 style="color: #f59e0b; margin-bottom: 15px;">Contact rapide</h4>
+          <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +227 93 03 31 58</p>
+          <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> voltsniger@gmail.com</p>
+        </div>
+        
+        <div>
+          <h4 style="color: #f59e0b; margin-bottom: 15px;">Liens utiles</h4>
+          <p><a href="index.html" style="color: white; text-decoration: none;">Accueil</a></p>
+          <p><a href="produits.html" style="color: white; text-decoration: none;">Produits</a></p>
+          <p><a href="contact.html" style="color: #f59e0b; text-decoration: none;">Contact</a></p>
+          <p><a href="faq.html" style="color: white; text-decoration: none;">FAQ</a></p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; padding-top: 20px; border-top: 1px solid #374151; color: #9ca3af;">
+        <p>&copy; 2024 Boutique Électronique Niger. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple script pour améliorer l'expérience
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animation des cartes
+      const cards = document.querySelectorAll('.contact-item, .contact-form');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          card.style.transition = 'opacity 0.5s, transform 0.5s';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 100 * index);
+      });
+      
+      // Validation du formulaire
+      const form = document.querySelector('form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          const sujet = document.getElementById('sujet');
+          if (sujet && sujet.value === '') {
+            e.preventDefault();
+            alert('Veuillez sélectionner un sujet pour votre message.');
+            sujet.focus();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
