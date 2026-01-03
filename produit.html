@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr" data-page="produit-detail">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détail Produit - Boutique Électronique</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <i class="fas fa-microchip"></i>
+        <span>Boutique<span style="color: #f59e0b;">Électronique</span></span>
+      </a>
+      
+      <button class="menu-toggle" aria-label="Menu principal">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav class="site-nav">
+        <a href="index.html">
+          <i class="fas fa-home"></i> Accueil
+        </a>
+        <a href="produits.html">
+          <i class="fas fa-shopping-bag"></i> Produits
+        </a>
+        <a href="categories.html">
+          <i class="fas fa-th"></i> Catégories
+        </a>
+        <a href="devis.html">
+          <i class="fas fa-file-invoice"></i> Devis
+        </a>
+        <a href="contact.html">
+          <i class="fas fa-envelope"></i> Contact
+        </a>
+        <a href="panier.html" class="cart-link">
+          <i class="fas fa-shopping-cart"></i> Panier
+          <span class="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="produit-detail">
+      <!-- Le produit sera chargé ici par JavaScript -->
+      <div class="loading">
+        <i class="fas fa-spinner fa-spin"></i> Chargement du produit...
+      </div>
+    </div>
+
+    <!-- Produits similaires -->
+    <section class="section">
+      <h2>Produits Similaires</h2>
+      <div id="produits-similaires" class="produits-grid">
+        <!-- Chargé par JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h4><i class="fas fa-store"></i> Notre Boutique</h4>
+          <p>Composants électroniques à Niamey depuis 2023</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-link"></i> Liens Rapides</h4>
+          <a href="index.html">Accueil</a>
+          <a href="produits.html">Produits</a>
+          <a href="categories.html">Catégories</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-headset"></i> Support</h4>
+          <a href="faq.html">FAQ</a>
+          <a href="livraison.html">Livraison</a>
+          <a href="cgv.html">Conditions</a>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-map-marker-alt"></i> Contact</h4>
+          <p><i class="fas fa-map-pin"></i> Niamey, Niger</p>
+          <p><i class="fas fa-phone"></i> +227 93 03 31 58</p>
+          <p><i class="fas fa-phone"></i> +227 89 63 15 95</p>
+          <p><i class="fas fa-envelope"></i> voltsniger@gmail.com</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Boutique Électronique Niger</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Charger le produit à partir de l'ID dans l'URL
+    document.addEventListener('DOMContentLoaded', async function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+      
+      if (!productId) {
+        window.location.href = 'produits.html';
+        return;
+      }
+      
+      try {
+        const response = await fetch('produits.json');
+        const data = await response.json();
+        const produit = data.produits.find(p => p.id === productId);
+        
+        if (!produit) {
+          document.getElementById('produit-detail').innerHTML = `
+            <div class="error">
+              <i class="fas fa-exclamation-triangle"></i>
+              <h2>Produit non trouvé</h2>
+              <a href="produits.html" class="btn btn-primary">Retour aux produits</a>
+            </div>
+          `;
+          return;
+        }
+        
+        // Afficher le produit
+        document.getElementById('produit-detail').innerHTML = `
+          <div class="produit-detail">
+            <div class="produit-gallery">
+              <img src="${produit.images[0]}" alt="${produit.nom}" class="main-image" id="main-image">
+              
+              ${produit.images.length > 1 ? `
+                <div class="thumbnail-grid">
+                  ${produit.images.map((img, index) => `
+                    <img src="${img}" alt="${produit.nom} - vue ${index+1}" 
+                         class="thumbnail ${index === 0 ? 'active' : ''}"
+                         onclick="document.getElementById('main-image').src = this.src;
+                                  document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                                  this.classList.add('active');">
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+            
+            <div class="produit-detail-info">
+              <span class="produit-category">${produit.categorie}</span>
+              <h1>${produit.nomComplet || produit.nom}</h1>
+              
+              <div class="produit-price-large">${produit.prix.toLocaleString()} ${produit.devise}</div>
+              
+              <div class="stock-badge ${produit.stock > 0 ? 'en-stock' : 'rupture'}">
+                <i class="fas fa-${produit.stock > 0 ? 'check' : 'times'}"></i>
+                ${produit.stock > 0 ? `${produit.stock} en stock` : 'Rupture de stock'}
+              </div>
+              
+              <p class="description">${produit.description}</p>
+              
+              <div class="produit-actions-large">
+                <button class="btn btn-primary btn-lg" onclick="ajouterAuPanier('${produit.id}')" 
+                        ${produit.stock === 0 ? 'disabled' : ''}>
+                  <i class="fas fa-cart-plus"></i> Ajouter au panier
+                </button>
+                
+                <button class="btn btn-secondary btn-lg" onclick="commanderWhatsApp('${produit.id}')">
+                  <i class="fab fa-whatsapp"></i> Commander maintenant
+                </button>
+              </div>
+              
+              ${produit.caracteristiques && produit.caracteristiques.length > 0 ? `
+                <div class="specs-section">
+                  <h3><i class="fas fa-list"></i> Caractéristiques</h3>
+                  <ul class="specs-list">
+                    ${produit.caracteristiques.map(spec => `<li><i class="fas fa-check"></i> ${spec}</li>`).join('')}
+                  </ul>
+                </div>
+              ` : ''}
+              
+              ${produit.avantages && produit.avantages.length > 0 ? `
+                <div class="specs-section">
+                  <h3><i class="fas fa-thumbs-up"></i> Avantages</h3>
+                  <ul class="specs-list">
+                    ${produit.avantages.map(av => `<li><i class="fas fa-plus"></i> ${av}</li>`).join('')}
+                  </ul>
+                </div>
+              ` : ''}
+              
+              ${produit.limitations && produit.limitations.length > 0 ? `
+                <div class="specs-section">
+                  <h3><i class="fas fa-exclamation-triangle"></i> Limitations</h3>
+                  <ul class="specs-list">
+                    ${produit.limitations.map(lim => `<li><i class="fas fa-minus"></i> ${lim}</li>`).join('')}
+                  </ul>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+        
+        // Afficher les produits similaires
+        const similaires = data.produits
+          .filter(p => p.id !== productId && p.categorie === produit.categorie)
+          .slice(0, 4);
+        
+        if (similaires.length > 0) {
+          document.getElementById('produits-similaires').innerHTML = similaires.map(p => `
+            <div class="produit-card">
+              <a href="produit.html?id=${p.id}">
+                <img src="${p.images[0]}" alt="${p.nom}" class="produit-image">
+                <div class="produit-info">
+                  <h3>${p.nom}</h3>
+                  <div class="produit-price">${p.prix.toLocaleString()} ${p.devise}</div>
+                  <button class="btn btn-sm btn-primary">Voir détails</button>
+                </div>
+              </a>
+            </div>
+          `).join('');
+        }
+        
+      } catch (error) {
+        console.error('Erreur:', error);
+        document.getElementById('produit-detail').innerHTML = `
+          <div class="error">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h2>Erreur de chargement</h2>
+            <a href="produits.html" class="btn btn-primary">Retour aux produits</a>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>
