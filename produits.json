@@ -1,0 +1,44 @@
+{
+  "produits": [
+    {
+      "id": "esp32",
+      "nom": "ESP32 WiFi/Bluetooth",
+      "nomComplet": "Module ESP32 WiFi/Bluetooth Dual-Core",
+      "prix": 9000,
+      "devise": "FCFA",
+      "images": ["images/produits/esp32.png"],
+      "videos": ["videos/esp32-demo.mp4"],
+      "description": "Microcontrôleur puissant avec WiFi et Bluetooth intégrés",
+      "caracteristiques": ["Dual-core", "WiFi/Bluetooth", "34 GPIO"],
+      "avantages": ["Connectivité intégrée", "Puissant", "Idéal IoT"],
+      "limitations": ["Consommation élevée", "3.3V requis"],
+      "categorie": "microcontroleurs",
+      "stock": 15,
+      "nouveau": true
+    },
+    {
+      "id": "arduino-nano",
+      "nom": "Arduino Nano",
+      "nomComplet": "Carte Arduino Nano ATmega328P",
+      "prix": 7000,
+      "devise": "FCFA",
+      "images": ["images/produits/arduino-nano.png"],
+      "videos": ["videos/arduino-demo.mp4"],
+      "description": "Carte microcontrôleur compacte pour projets embarqués",
+      "caracteristiques": ["ATmega328P", "16 MHz", "22 GPIO"],
+      "avantages": ["Compact", "Facile à utiliser", "Large communauté"],
+      "limitations": ["Pas de WiFi", "Moins puissant"],
+      "categorie": "microcontroleurs",
+      "stock": 25,
+      "nouveau": false
+    }
+  ],
+  "categories": [
+    {"id": "microcontroleurs", "nom": "Microcontrôleurs"},
+    {"id": "communication", "nom": "Communication sans fil"},
+    {"id": "moteurs", "nom": "Contrôle de moteurs"},
+    {"id": "capteurs", "nom": "Capteurs"},
+    {"id": "alimentation", "nom": "Alimentation"},
+    {"id": "accessoires", "nom": "Accessoires"}
+  ]
+}
