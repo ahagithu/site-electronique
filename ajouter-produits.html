@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter un Produit - Admin</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+    .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1 { margin-bottom: 30px; color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+    input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+    textarea { min-height: 100px; resize: vertical; }
+    .form-row { display: flex; gap: 20px; }
+    .form-row > div { flex: 1; }
+    .btn { background: #4CAF50; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background 0.3s; }
+    .btn:hover { background: #45a049; }
+    .btn-secondary { background: #2196F3; }
+    .btn-secondary:hover { background: #0b7dda; }
+    .instructions { background: #e8f5e9; padding: 15px; border-radius: 5px; margin-bottom: 20px; border-left: 4px solid #4CAF50; }
+    .preview { background: #f9f9f9; padding: 20px; border-radius: 5px; margin-top: 30px; border: 1px dashed #ddd; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>➕ Ajouter un Nouveau Produit</h1>
+    
+    <div class="instructions">
+      <h3>📋 Instructions :</h3>
+      <p>1. Remplissez tous les champs du formulaire</p>
+      <p>2. Cliquez sur "Générer JSON" pour créer le code du produit</p>
+      <p>3. Copiez le JSON et ajoutez-le dans le fichier <strong>produits.json</strong></p>
+      <p>4. Téléchargez les images dans le dossier <strong>images/produits/</strong></p>
+    </div>
+    
+    <form id="produitForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="id">ID du produit (unique) :</label>
+          <input type="text" id="id" required placeholder="ex: esp32-v2">
+        </div>
+        
+        <div class="form-group">
+          <label for="nom">Nom court :</label>
+          <input type="text" id="nom" required placeholder="ex: ESP32 WiFi/Bluetooth">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="nomComplet">Nom complet :</label>
+        <input type="text" id="nomComplet" required placeholder="ex: Module ESP32 WiFi/Bluetooth Dual-Core">
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prix">Prix (FCFA) :</label>
+          <input type="number" id="prix" required min="0" placeholder="9000">
+        </div>
+        
+        <div class="form-group">
+          <label for="categorie">Catégorie :</label>
+          <select id="categorie" required>
+            <option value="">Sélectionnez...</option>
+            <option value="microcontroleurs">Microcontrôleurs</option>
+            <option value="communication">Communication sans fil</option>
+            <option value="moteurs">Contrôle de moteurs</option>
+            <option value="capteurs">Capteurs</option>
+            <option value="alimentation">Alimentation</option>
+            <option value="accessoires">Accessoires</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="stock">Stock disponible :</label>
+          <input type="number" id="stock" required min="0" value="10">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="images">Images (noms de fichiers, séparés par des virgules) :</label>
+        <input type="text" id="images" required placeholder="esp32.png, esp32-back.jpg">
+        <small>Placez les images dans le dossier images/produits/</small>
+      </div>
+      
+      <div class="form-group">
+        <label for="videos">Vidéos (optionnel) :</label>
+        <input type="text" id="videos" placeholder="esp32-demo.mp4">
+        <small>Placez les vidéos dans le dossier videos/</small>
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Description courte :</label>
+        <textarea id="description" required placeholder="Description du produit en 1-2 phrases..."></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="caracteristiques">Caractéristiques principales (une par ligne) :</label>
+        <textarea id="caracteristiques" required placeholder="Caractéristique 1&#10;Caractéristique 2&#10;Caractéristique 3"></textarea>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="avantages">Avantages (une par ligne) :</label>
+          <textarea id="avantages" placeholder="Avantage 1&#10;Avantage 2"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="limitations">Limitations (une par ligne) :</label>
+          <textarea id="limitations" placeholder="Limitation 1&#10;Limitation 2"></textarea>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="nouveau"> Marquer comme nouveau produit
+          </label>
+        </div>
+        
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="enPromotion"> En promotion
+          </label>
+        </div>
+      </div>
+      
+      <button type="button" class="btn" onclick="genererJSON()">Générer JSON</button>
+      <button type="button" class="btn btn-secondary" onclick="resetForm()">Effacer le formulaire</button>
+    </form>
+    
+    <div class="preview">
+      <h3>Code JSON généré :</h3>
+      <pre id="jsonOutput" style="background: white; padding: 15px; border-radius: 5px; overflow: auto; max-height: 400px; border: 1px solid #ddd; margin-top: 10px;"></pre>
+      <button class="btn" onclick="copierJSON()" style="margin-top: 10px;">📋 Copier le JSON</button>
+    </div>
+  </div>
+  
+  <script>
+    function genererJSON() {
+      // Récupérer les valeurs du formulaire
+      const produit = {
+        id: document.getElementById('id').value,
+        nom: document.getElementById('nom').value,
+        nomComplet: document.getElementById('nomComplet').value,
+        prix: parseInt(document.getElementById('prix').value),
+        devise: "FCFA",
+        images: document.getElementById('images').value.split(',').map(img => img.trim()),
+        videos: document.getElementById('videos').value ? 
+                document.getElementById('videos').value.split(',').map(vid => vid.trim()) : [],
+        description: document.getElementById('description').value,
+        caracteristiques: document.getElementById('caracteristiques').value.split('\n').filter(line => line.trim()),
+        avantages: document.getElementById('avantages').value ? 
+                   document.getElementById('avantages').value.split('\n').filter(line => line.trim()) : [],
+        limitations: document.getElementById('limitations').value ? 
+                     document.getElementById('limitations').value.split('\n').filter(line => line.trim()) : [],
+        categorie: document.getElementById('categorie').value,
+        stock: parseInt(document.getElementById('stock').value),
+        nouveau: document.getElementById('nouveau').checked,
+        enPromotion: document.getElementById('enPromotion').checked
+      };
+      
+      // Générer le JSON formaté
+      const jsonString = JSON.stringify(produit, null, 2);
+      document.getElementById('jsonOutput').textContent = jsonString;
+      
+      // Instructions pour l'ajout
+      const instructions = `
+
+📝 INSTRUCTIONS POUR AJOUTER LE PRODUIT :
+
+1. Ouvrez le fichier "produits.json"
+2. Trouvez le tableau "produits": [ ... ]
+3. Ajoutez une virgule après le dernier produit
+4. Collez le code ci-dessus
+5. Sauvegardez le fichier
+
+Le produit apparaîtra automatiquement sur le site !
+      `;
+      
+      console.log(instructions);
+      alert('JSON généré ! Suivez les instructions dans la console (F12)');
+    }
+    
+    function copierJSON() {
+      const jsonText = document.getElementById('jsonOutput').textContent;
+      navigator.clipboard.writeText(jsonText)
+        .then(() => alert('JSON copié dans le presse-papier !'))
+        .catch(err => console.error('Erreur de copie:', err));
+    }
+    
+    function resetForm() {
+      document.getElementById('produitForm').reset();
+      document.getElementById('jsonOutput').textContent = '';
+    }
+    
+    // Exemple de produit pré-rempli (optionnel)
+    function chargerExemple() {
+      document.getElementById('id').value = 'capteur-temperature';
+      document.getElementById('nom').value = 'Capteur DHT22';
+      document.getElementById('nomComplet').value = 'Capteur de Température et Humidité DHT22';
+      document.getElementById('prix').value = '4500';
+      document.getElementById('categorie').value = 'capteurs';
+      document.getElementById('stock').value = '25';
+      document.getElementById('images').value = 'dht22.png, dht22-schema.jpg';
+      document.getElementById('description').value = 'Capteur précis de température et humidité pour Arduino et ESP32.';
+      document.getElementById('caracteristiques').value = 'Mesure température: -40°C à 80°C\nMesure humidité: 0-100% RH\nPrécision: ±0.5°C, ±2% RH\nCommunication: One-Wire\nAlimentation: 3.3V-5V';
+      document.getElementById('avantages').value = 'Haute précision\nFaible consommation\nFacile à utiliser\nLarge plage de mesure';
+      document.getElementById('limitations').value = 'Temps de réponse: 2 secondes\nDistance câble limitée';
+      document.getElementById('nouveau').checked = true;
+    }
+    
+    // Décommentez la ligne suivante pour pré-remplir avec un exemple
+    // window.onload = chargerExemple;
+  </script>
+</body>
+</html>

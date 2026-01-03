@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr" data-page="index">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boutique Électronique — Composants et Matériel Électronique à Niamey</title>
+  <meta name="description" content="Votre fournisseur de composants électroniques à Niamey, Niger. ESP32, Arduino, modules WiFi, capteurs, moteurs. Livraison rapide, qualité garantie.">
+  <meta name="keywords" content="électronique, Niger, Niamey, ESP32, Arduino, composants électroniques, IoT, microcontrôleurs">
+  <meta name="author" content="Boutique Électronique Niger">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Boutique Électronique — Niger">
+  <meta property="og:description" content="Composants électroniques de qualité à Niamey">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://votre-site.com">
+  <meta property="og:image" content="image/logo.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="image/icon-192.png">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Boutique Électronique Niger",
+    "image": "https://votre-site.com/image/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Niamey",
+      "addressRegion": "Niamey",
+      "addressCountry": "NE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "13.5127",
+      "longitude": "2.1118"
+    },
+    "url": "https://votre-site.com",
+    "telephone": "+22793033158",
+    "priceRange": "5000 - 50000 FCFA",
+    "openingHours": "Mo-Su 08:00-20:00"
+  }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <i class="fas fa-microchip"></i>
+        <span>Boutique<span class="accent">Électronique</span></span>
+      </a>
+      
+      <button class="menu-toggle" aria-label="Menu principal">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav class="site-nav">
+        <a href="index.html" class="active">
+          <i class="fas fa-home"></i> Accueil
+        </a>
+        <a href="produits.html">
+          <i class="fas fa-shopping-bag"></i> Produits
+        </a>
+        <a href="categories.html">
+          <i class="fas fa-th"></i> Catégories
+        </a>
+        <a href="devis.html">
+          <i class="fas fa-file-invoice"></i> Devis
+        </a>
+        <a href="contact.html">
+          <i class="fas fa-envelope"></i> Contact
+        </a>
+        <a href="panier.html" class="cart-link">
+          <i class="fas fa-shopping-cart"></i> Panier
+          <span class="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Slider -->
+  <section class="hero-slider">
+    <div class="slide active" style="background-image: url('image/hero1.jpg');">
+      <div class="slide-content">
+        <h2>Composants Électroniques de Qualité</h2>
+        <p>ESP32, Arduino, modules et capteurs pour tous vos projets</p>
+        <a href="produits.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-shopping-bag"></i> Découvrir nos produits
+        </a>
+      </div>
+    </div>
+    
+    <div class="slide" style="background-image: url('image/hero2.jpg');">
+      <div class="slide-content">
+        <h2>Livraison Rapide à Niamey</h2>
+        <p>Expédition sous 24h dans toute la ville</p>
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-truck"></i> Commander maintenant
+        </a>
+      </div>
+    </div>
+    
+    <div class="slide" style="background-image: url('image/hero3.jpg');">
+      <div class="slide-content">
+        <h2>Support Technique Expert</h2>
+        <p>Conseils et assistance pour vos projets électroniques</p>
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-headset"></i> Contactez-nous
+        </a>
+      </div>
+    </div>
+    
+    <div class="slider-controls">
+      <span class="slider-dot active"></span>
+      <span class="slider-dot"></span>
+      <span class="slider-dot"></span>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- Section Produits en Vedette -->
+    <section class="section">
+      <div class="section-header">
+        <h2><i class="fas fa-star"></i> Produits en Vedette</h2>
+        <a href="produits.html" class="btn btn-outline">
+          Voir tous <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div id="produits-vedette" class="produits-grid">
+        <!-- Les produits seront chargés par JavaScript -->
+        <div class="loading">
+          <i class="fas fa-spinner fa-spin"></i> Chargement des produits...
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Pourquoi Nous Choisir -->
+    <section class="section features-section">
+      <h2 class="text-center mb-4">Pourquoi Choisir Notre Boutique ?</h2>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shipping-fast"></i>
+          </div>
+          <h3>Livraison Rapide</h3>
+          <p>Expédition sous 24h à Niamey. Options de livraison dans tout le Niger.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <h3>Qualité Garantie</h3>
+          <p>Tous nos composants sont testés et vérifiés avant expédition.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>Support Technique</h3>
+          <p>Conseils experts pour choisir et intégrer vos composants.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Paiement Sécurisé</h3>
+          <p>Transactions sécurisées et options de paiement flexibles.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Catégories -->
+    <section class="section">
+      <h2 class="text-center mb-4">Nos Catégories de Produits</h2>
+      
+      <div class="categories-grid">
+        <a href="produits.html?category=microcontroleurs" class="category-card">
+          <i class="fas fa-microchip"></i>
+          <h3>Microcontrôleurs</h3>
+          <p>ESP32, Arduino, STM32</p>
+        </a>
+        
+        <a href="produits.html?category=communication" class="category-card">
+          <i class="fas fa-wifi"></i>
+          <h3>Communication</h3>
+          <p>WiFi, Bluetooth, RF</p>
+        </a>
+        
+        <a href="produits.html?category=capteurs" class="category-card">
+          <i class="fas fa-thermometer-half"></i>
+          <h3>Capteurs</h3>
+          <p>Température, Mouvement, etc.</p>
+        </a>
+        
+        <a href="produits.html?category=moteurs" class="category-card">
+          <i class="fas fa-cog"></i>
+          <h3>Moteurs & Contrôle</h3>
+          <p>Pilotes, moteurs pas-à-pas</p>
+        </a>
+        
+        <a href="produits.html?category=alimentation" class="category-card">
+          <i class="fas fa-battery-full"></i>
+          <h3>Alimentation</h3>
+          <p>Alims, régulateurs, batteries</p>
+        </a>
+        
+        <a href="produits.html?category=accessoires" class="category-card">
+          <i class="fas fa-tools"></i>
+          <h3>Accessoires</h3>
+          <p>Câbles, breadboards, outils</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="section testimonials-section">
+      <h2 class="text-center mb-4">Ce Que Disent Nos Clients</h2>
+      
+      <div class="testimonials-slider">
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p>"Livraison ultra rapide et produits de qualité. Mon projet IoT avec ESP32 fonctionne parfaitement!"</p>
+          <div class="testimonial-author">
+            <strong>Dr. Ahmed</strong>
+            <span>Ingénieur Électronique</span>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <p>"Le support technique m'a aidé à choisir les bons composants pour mon drone. Très professionnel!"</p>
+          <div class="testimonial-author">
+            <strong>Fatima</strong>
+            <span>Étudiante en Robotique</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>Prêt à Commencer Votre Projet ?</h2>
+        <p>Contactez-nous pour des conseils personnalisés ou commandez directement en ligne</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-primary btn-lg">
+            <i class="fas fa-envelope"></i> Nous Contacter
+          </a>
+          <a href="https://wa.me/22793033158" class="btn btn-secondary btn-lg" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h4><i class="fas fa-store"></i> Notre Boutique</h4>
+          <p>Votre fournisseur de confiance en composants électroniques à Niamey depuis 2023.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" title="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" title="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-link" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-link"></i> Liens Rapides</h4>
+          <a href="index.html">Accueil</a>
+          <a href="produits.html">Tous les produits</a>
+          <a href="categories.html">Catégories</a>
+          <a href="nouveautes.html">Nouveautés</a>
+          <a href="promotions.html">Promotions</a>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-headset"></i> Support</h4>
+          <a href="contact.html">Contactez-nous</a>
+          <a href="faq.html">FAQ</a>
+          <a href="livraison.html">Livraison & Retours</a>
+          <a href="cgv.html">Conditions Générales</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-map-marker-alt"></i> Contact</h4>
+          <p><i class="fas fa-map-pin"></i> Niamey, Niger</p>
+          <p><i class="fas fa-phone"></i> <a href="tel:+22793033158">+227 93 03 31 58</a></p>
+          <p><i class="fas fa-phone"></i> <a href="tel:+22789631595">+227 89 63 15 95</a></p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:voltsniger@gmail.com">voltsniger@gmail.com</a></p>
+          <p><i class="fas fa-clock"></i> Lun-Dim: 8h-20h</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Boutique Électronique Niger. Tous droits réservés.</p>
+        <p class="footer-credits">
+          Conçu avec <i class="fas fa-heart"></i> pour la communauté électronique
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" title="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="main.js"></script>
+  <script src="cart.js"></script>
+  
+  <script>
+    // Back to Top
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('Service Worker enregistré'))
+          .catch(err => console.log('Échec enregistrement:', err));
+      });
+    }
+  </script>
+</body>
+</html>
