@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr" data-page="devis">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demande de Devis - Boutique Électronique</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <i class="fas fa-microchip"></i>
+        <span>Boutique<span style="color: #f59e0b;">Électronique</span></span>
+      </a>
+      
+      <button class="menu-toggle" aria-label="Menu principal">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav class="site-nav">
+        <a href="index.html">
+          <i class="fas fa-home"></i> Accueil
+        </a>
+        <a href="produits.html">
+          <i class="fas fa-shopping-bag"></i> Produits
+        </a>
+        <a href="categories.html">
+          <i class="fas fa-th"></i> Catégories
+        </a>
+        <a href="devis.html" class="active">
+          <i class="fas fa-file-invoice"></i> Devis
+        </a>
+        <a href="contact.html">
+          <i class="fas fa-envelope"></i> Contact
+        </a>
+        <a href="panier.html" class="cart-link">
+          <i class="fas fa-shopping-cart"></i> Panier
+          <span class="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title"><i class="fas fa-file-invoice"></i> Demande de Devis</h1>
+    
+    <div class="devis-container">
+      <div class="devis-info">
+        <div class="card">
+          <h2><i class="fas fa-info-circle"></i> Comment ça marche ?</h2>
+          <ol class="steps">
+            <li>
+              <i class="fas fa-clipboard-list"></i>
+              <div>
+                <strong>Remplissez le formulaire</strong>
+                <p>Décrivez vos besoins et sélectionnez les produits</p>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-calculator"></i>
+              <div>
+                <strong>Nous préparons votre devis</strong>
+                <p>Nous calculons le prix total avec toutes les options</p>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <div>
+                <strong>Reception du devis par email</strong>
+                <p>Vous recevez un devis détaillé sous 24h</p>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <div>
+                <strong>Validation et commande</strong>
+                <p>Validez votre devis et passez commande</p>
+              </div>
+            </li>
+          </ol>
+          
+          <div class="benefits">
+            <h3><i class="fas fa-gift"></i> Avantages</h3>
+            <ul>
+              <li><i class="fas fa-check"></i> Devis gratuit et sans engagement</li>
+              <li><i class="fas fa-check"></i> Prix négociés pour les quantités</li>
+              <li><i class="fas fa-check"></i> Conseil technique inclus</li>
+              <li><i class="fas fa-check"></i> Valable 30 jours</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="devis-form-container">
+        <div class="card">
+          <h2><i class="fas fa-edit"></i> Formulaire de Devis</h2>
+          
+          <form id="devis-form" action="https://formspree.io/f/mdkdblzw" method="POST">
+            <input type="hidden" name="_subject" value="Nouvelle demande de devis">
+            <input type="hidden" name="_redirect" value="merci-devis.html">
+            
+            <div class="form-section">
+              <h3><i class="fas fa-user"></i> Informations personnelles</h3>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nom">Nom complet *</label>
+                  <input type="text" id="nom" name="nom" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="entreprise">Entreprise/Organisation</label>
+                  <input type="text" id="entreprise" name="entreprise">
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="telephone">Téléphone *</label>
+                  <input type="tel" id="telephone" name="telephone" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="adresse">Adresse de livraison *</label>
+                <textarea id="adresse" name="adresse" rows="2" required></textarea>
+              </div>
+            </div>
+            
+            <div class="form-section">
+              <h3><i class="fas fa-box"></i> Produits demandés</h3>
+              
+              <div id="produits-selection">
+                <div class="produit-selection">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>Produit</label>
+                      <input type="text" name="produit[]" placeholder="Ex: ESP32 WiFi" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label>Quantité</label>
+                      <input type="number" name="quantite[]" min="1" value="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label>Référence (optionnel)</label>
+                      <input type="text" name="reference[]" placeholder="Référence exacte">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <button type="button" class="btn btn-outline" onclick="ajouterProduit()">
+                <i class="fas fa-plus"></i> Ajouter un autre produit
+              </button>
+            </div>
+            
+            <div class="form-section">
+              <h3><i class="fas fa-comment"></i> Informations supplémentaires</h3>
+              
+              <div class="form-group">
+                <label for="type-projet">Type de projet</label>
+                <select id="type-projet" name="type-projet">
+                  <option value="">Sélectionnez...</option>
+                  <option value="education">Éducation/Formation</option>
+                  <option value="recherche">Recherche/Développement</option>
+                  <option value="industrie">Industrie/Production</option>
+                  <option value="startup">Startup/Prototype</option>
+                  <option value="personnel">Projet personnel</option>
+                  <option value="autre">Autre</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="delai">Délai souhaité</label>
+                <select id="delai" name="delai">
+                  <option value="">Sélectionnez...</option>
+                  <option value="urgent">Urgent (1-3 jours)</option>
+                  <option value="rapide">Rapide (1 semaine)</option>
+                  <option value="normal">Normal (2-3 semaines)</option>
+                  <option value="long">Long terme (1 mois+)</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message supplémentaire</label>
+                <textarea id="message" name="message" rows="4" 
+                          placeholder="Décrivez votre projet, besoins spécifiques, contraintes techniques..."></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="budget">Budget estimé (optionnel)</label>
+                <input type="text" id="budget" name="budget" placeholder="Ex: 50 000 FCFA">
+              </div>
+            </div>
+            
+            <div class="form-section">
+              <div class="form-group checkbox">
+                <input type="checkbox" id="newsletter" name="newsletter" checked>
+                <label for="newsletter">Je souhaite recevoir les nouveautés et promotions</label>
+              </div>
+              
+              <div class="form-group checkbox">
+                <input type="checkbox" id="conditions" name="conditions" required>
+                <label for="conditions">J'accepte les conditions générales *</label>
+              </div>
+              
+              <div class="captcha">
+                <label>Vérification : Combien font 7 + 3 ? *</label>
+                <input type="number" name="captcha" required min="0" max="20">
+              </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fas fa-paper-plane"></i> Envoyer la demande de devis
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h4><i class="fas fa-store"></i> Notre Boutique</h4>
+          <p>Composants électroniques à Niamey depuis 2023</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-link"></i> Liens Rapides</h4>
+          <a href="index.html">Accueil</a>
+          <a href="produits.html">Produits</a>
+          <a href="categories.html">Catégories</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-headset"></i> Support</h4>
+          <a href="faq.html">FAQ</a>
+          <a href="livraison.html">Livraison</a>
+          <a href="cgv.html">Conditions</a>
+        </div>
+        
+        <div class="footer-column">
+          <h4><i class="fas fa-map-marker-alt"></i> Contact</h4>
+          <p><i class="fas fa-map-pin"></i> Niamey, Niger</p>
+          <p><i class="fas fa-phone"></i> +227 93 03 31 58</p>
+          <p><i class="fas fa-phone"></i> +227 89 63 15 95</p>
+          <p><i class="fas fa-envelope"></i> voltsniger@gmail.com</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Boutique Électronique Niger</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function ajouterProduit() {
+      const container = document.getElementById('produits-selection');
+      const newProduct = document.createElement('div');
+      newProduct.className = 'produit-selection';
+      newProduct.innerHTML = `
+        <div class="form-row">
+          <div class="form-group">
+            <label>Produit</label>
+            <input type="text" name="produit[]" placeholder="Ex: ESP32 WiFi" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Quantité</label>
+            <input type="number" name="quantite[]" min="1" value="1" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Référence (optionnel)</label>
+            <input type="text" name="reference[]" placeholder="Référence exacte">
+          </div>
+          
+          <div class="form-group">
+            <label>&nbsp;</label>
+            <button type="button" class="btn btn-sm btn-outline" onclick="supprimerProduit(this)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      container.appendChild(newProduct);
+    }
+    
+    function supprimerProduit(button) {
+      const productDiv = button.closest('.produit-selection');
+      if (document.querySelectorAll('.produit-selection').length > 1) {
+        productDiv.remove();
+      } else {
+        alert('Vous devez avoir au moins un produit dans votre devis.');
+      }
+    }
+    
+    // Initialiser le compteur panier
+    document.addEventListener('DOMContentLoaded', function() {
+      mettreAJourCompteurPanier();
+    });
+  </script>
+</body>
+</html>
