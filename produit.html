@@ -6,6 +6,167 @@
   <title>Détail Produit - Boutique Électronique</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .loading {
+      text-align: center;
+      padding: 60px;
+      color: #6b7280;
+    }
+    
+    .error {
+      text-align: center;
+      padding: 60px;
+      color: #dc2626;
+    }
+    
+    .error i {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .produit-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 40px 0;
+    }
+    
+    .produit-gallery {
+      position: sticky;
+      top: 20px;
+    }
+    
+    .main-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 20px;
+      border: 2px solid #e5e7eb;
+    }
+    
+    .thumbnail-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .thumbnail {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+    
+    .thumbnail.active,
+    .thumbnail:hover {
+      border-color: #2563eb;
+    }
+    
+    .produit-detail-info {
+      padding: 20px 0;
+    }
+    
+    .produit-category {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    .produit-price-large {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #2563eb;
+      margin: 20px 0;
+    }
+    
+    .stock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      margin: 15px 0;
+    }
+    
+    .stock-badge.en-stock {
+      background: #dcfce7;
+      color: #059669;
+    }
+    
+    .stock-badge.rupture {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+    
+    .description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #4b5563;
+      margin: 20px 0;
+    }
+    
+    .produit-actions-large {
+      display: flex;
+      gap: 15px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    
+    .specs-section {
+      margin: 30px 0;
+      padding: 20px;
+      background: #f9fafb;
+      border-radius: 12px;
+    }
+    
+    .specs-section h3 {
+      color: #1f2937;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .specs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .specs-list li {
+      padding: 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    
+    .specs-list li i {
+      color: #2563eb;
+      margin-top: 3px;
+    }
+    
+    @media (max-width: 1024px) {
+      .produit-detail {
+        grid-template-columns: 1fr;
+      }
+      
+      .produit-gallery {
+        position: static;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -46,17 +207,19 @@
 
   <main class="container">
     <div id="produit-detail">
-      <!-- Le produit sera chargé ici par JavaScript -->
       <div class="loading">
-        <i class="fas fa-spinner fa-spin"></i> Chargement du produit...
+        <i class="fas fa-spinner fa-spin fa-2x"></i>
+        <p>Chargement du produit...</p>
       </div>
     </div>
 
     <!-- Produits similaires -->
-    <section class="section">
+    <section class="section" style="margin-top: 60px;">
       <h2>Produits Similaires</h2>
       <div id="produits-similaires" class="produits-grid">
-        <!-- Chargé par JavaScript -->
+        <div class="loading">
+          <i class="fas fa-spinner fa-spin"></i> Chargement des produits similaires...
+        </div>
       </div>
     </section>
   </main>
@@ -107,136 +270,305 @@
 
   <script src="main.js"></script>
   <script>
-    // Charger le produit à partir de l'ID dans l'URL
+    // ===== FONCTIONS SPÉCIFIQUES À LA PAGE PRODUIT =====
+    
+    // Fonction pour commander via WhatsApp
+    function commanderWhatsApp(productId, numberType = 'primary') {
+      const phoneNumbers = {
+        primary: '+22793033158',
+        secondary: '+22789631595'
+      };
+      
+      const produit = window.currentProduit || produits.find(p => p.id === productId);
+      if (!produit) return;
+      
+      const phoneNumber = phoneNumbers[numberType];
+      const message = encodeURIComponent(
+        `Bonjour, je souhaite commander:\n` +
+        `Produit: ${produit.nom}\n` +
+        `Prix: ${produit.prix.toLocaleString()} ${produit.devise}\n` +
+        `Quantité: 1\n\n` +
+        `Merci de me contacter pour finaliser la commande.`
+      );
+      
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    }
+    
+    // Fonction pour ajouter au panier
+    function ajouterAuPanierProduit(productId, quantity = 1) {
+      const produit = window.currentProduit || produits.find(p => p.id === productId);
+      
+      if (!produit) {
+        showNotification('Produit non trouvé', 'error');
+        return;
+      }
+      
+      if (produit.stock === 0) {
+        showNotification('Produit en rupture de stock', 'error');
+        return;
+      }
+      
+      // Récupérer le panier existant
+      let panier = JSON.parse(localStorage.getItem('panier')) || [];
+      
+      const existingItem = panier.find(item => item.id === productId);
+      
+      if (existingItem) {
+        if (existingItem.quantity + quantity > produit.stock) {
+          showNotification('Stock insuffisant', 'error');
+          return;
+        }
+        existingItem.quantity += quantity;
+      } else {
+        panier.push({
+          id: produit.id,
+          nom: produit.nom,
+          prix: produit.prix,
+          image: produit.images[0],
+          quantity: quantity,
+          maxStock: produit.stock
+        });
+      }
+      
+      localStorage.setItem('panier', JSON.stringify(panier));
+      mettreAJourCompteurPanier();
+      showNotification(`${produit.nom} ajouté au panier`, 'success');
+    }
+    
+    // Fonction pour mettre à jour le compteur panier
+    function mettreAJourCompteurPanier() {
+      const panier = JSON.parse(localStorage.getItem('panier')) || [];
+      const totalItems = panier.reduce((sum, item) => sum + item.quantity, 0);
+      const countElements = document.querySelectorAll('.cart-count');
+      
+      countElements.forEach(el => {
+        el.textContent = totalItems;
+        el.style.display = totalItems > 0 ? 'inline' : 'none';
+      });
+    }
+    
+    // Fonction pour afficher une notification
+    function showNotification(message, type = 'info') {
+      // Créer l'élément de notification
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transform: translateX(150%);
+        transition: transform 0.3s ease;
+      `;
+      
+      notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+        <span>${message}</span>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Afficher la notification
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 10);
+      
+      // Supprimer après 3 secondes
+      setTimeout(() => {
+        notification.style.transform = 'translateX(150%)';
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
+    }
+    
+    // ===== CHARGEMENT DU PRODUIT =====
+    
     document.addEventListener('DOMContentLoaded', async function() {
+      // Mettre à jour le compteur panier
+      mettreAJourCompteurPanier();
+      
+      // Récupérer l'ID du produit depuis l'URL
       const urlParams = new URLSearchParams(window.location.search);
       const productId = urlParams.get('id');
       
       if (!productId) {
-        window.location.href = 'produits.html';
+        afficherErreur('ID produit manquant dans l\'URL');
         return;
       }
       
       try {
+        // Charger les données produits
         const response = await fetch('produits.json');
         const data = await response.json();
-        const produit = data.produits.find(p => p.id === productId);
+        const produits = data.produits;
+        
+        // Trouver le produit
+        const produit = produits.find(p => p.id === productId);
         
         if (!produit) {
-          document.getElementById('produit-detail').innerHTML = `
-            <div class="error">
-              <i class="fas fa-exclamation-triangle"></i>
-              <h2>Produit non trouvé</h2>
-              <a href="produits.html" class="btn btn-primary">Retour aux produits</a>
-            </div>
-          `;
+          afficherErreur('Produit non trouvé');
           return;
         }
         
+        // Stocker le produit globalement (pour les fonctions)
+        window.currentProduit = produit;
+        
         // Afficher le produit
-        document.getElementById('produit-detail').innerHTML = `
-          <div class="produit-detail">
-            <div class="produit-gallery">
-              <img src="${produit.images[0]}" alt="${produit.nom}" class="main-image" id="main-image">
-              
-              ${produit.images.length > 1 ? `
-                <div class="thumbnail-grid">
-                  ${produit.images.map((img, index) => `
-                    <img src="${img}" alt="${produit.nom} - vue ${index+1}" 
-                         class="thumbnail ${index === 0 ? 'active' : ''}"
-                         onclick="document.getElementById('main-image').src = this.src;
-                                  document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-                                  this.classList.add('active');">
-                  `).join('')}
-                </div>
-              ` : ''}
-            </div>
-            
-            <div class="produit-detail-info">
-              <span class="produit-category">${produit.categorie}</span>
-              <h1>${produit.nomComplet || produit.nom}</h1>
-              
-              <div class="produit-price-large">${produit.prix.toLocaleString()} ${produit.devise}</div>
-              
-              <div class="stock-badge ${produit.stock > 0 ? 'en-stock' : 'rupture'}">
-                <i class="fas fa-${produit.stock > 0 ? 'check' : 'times'}"></i>
-                ${produit.stock > 0 ? `${produit.stock} en stock` : 'Rupture de stock'}
-              </div>
-              
-              <p class="description">${produit.description}</p>
-              
-              <div class="produit-actions-large">
-                <button class="btn btn-primary btn-lg" onclick="ajouterAuPanier('${produit.id}')" 
-                        ${produit.stock === 0 ? 'disabled' : ''}>
-                  <i class="fas fa-cart-plus"></i> Ajouter au panier
-                </button>
-                
-                <button class="btn btn-secondary btn-lg" onclick="commanderWhatsApp('${produit.id}')">
-                  <i class="fab fa-whatsapp"></i> Commander maintenant
-                </button>
-              </div>
-              
-              ${produit.caracteristiques && produit.caracteristiques.length > 0 ? `
-                <div class="specs-section">
-                  <h3><i class="fas fa-list"></i> Caractéristiques</h3>
-                  <ul class="specs-list">
-                    ${produit.caracteristiques.map(spec => `<li><i class="fas fa-check"></i> ${spec}</li>`).join('')}
-                  </ul>
-                </div>
-              ` : ''}
-              
-              ${produit.avantages && produit.avantages.length > 0 ? `
-                <div class="specs-section">
-                  <h3><i class="fas fa-thumbs-up"></i> Avantages</h3>
-                  <ul class="specs-list">
-                    ${produit.avantages.map(av => `<li><i class="fas fa-plus"></i> ${av}</li>`).join('')}
-                  </ul>
-                </div>
-              ` : ''}
-              
-              ${produit.limitations && produit.limitations.length > 0 ? `
-                <div class="specs-section">
-                  <h3><i class="fas fa-exclamation-triangle"></i> Limitations</h3>
-                  <ul class="specs-list">
-                    ${produit.limitations.map(lim => `<li><i class="fas fa-minus"></i> ${lim}</li>`).join('')}
-                  </ul>
-                </div>
-              ` : ''}
-            </div>
-          </div>
-        `;
+        afficherProduitDetail(produit);
         
         // Afficher les produits similaires
-        const similaires = data.produits
-          .filter(p => p.id !== productId && p.categorie === produit.categorie)
-          .slice(0, 4);
-        
-        if (similaires.length > 0) {
-          document.getElementById('produits-similaires').innerHTML = similaires.map(p => `
-            <div class="produit-card">
-              <a href="produit.html?id=${p.id}">
-                <img src="${p.images[0]}" alt="${p.nom}" class="produit-image">
-                <div class="produit-info">
-                  <h3>${p.nom}</h3>
-                  <div class="produit-price">${p.prix.toLocaleString()} ${p.devise}</div>
-                  <button class="btn btn-sm btn-primary">Voir détails</button>
-                </div>
-              </a>
-            </div>
-          `).join('');
-        }
+        afficherProduitsSimilaires(produit, produits);
         
       } catch (error) {
         console.error('Erreur:', error);
-        document.getElementById('produit-detail').innerHTML = `
-          <div class="error">
-            <i class="fas fa-exclamation-triangle"></i>
-            <h2>Erreur de chargement</h2>
-            <a href="produits.html" class="btn btn-primary">Retour aux produits</a>
-          </div>
-        `;
+        afficherErreur('Erreur de chargement des données');
       }
     });
+    
+    function afficherProduitDetail(produit) {
+      const container = document.getElementById('produit-detail');
+      
+      if (!container) return;
+      
+      container.innerHTML = `
+        <div class="produit-detail">
+          <div class="produit-gallery">
+            <img src="${produit.images[0]}" alt="${produit.nom}" class="main-image" id="main-image">
+            
+            ${produit.images.length > 1 ? `
+              <div class="thumbnail-grid">
+                ${produit.images.map((img, index) => `
+                  <img src="${img}" alt="${produit.nom} - vue ${index+1}" 
+                       class="thumbnail ${index === 0 ? 'active' : ''}"
+                       onclick="changerImagePrincipale(this, '${img}')">
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+          
+          <div class="produit-detail-info">
+            <span class="produit-category">${produit.categorie}</span>
+            <h1>${produit.nomComplet || produit.nom}</h1>
+            
+            <div class="produit-price-large">${produit.prix.toLocaleString()} ${produit.devise}</div>
+            
+            <div class="stock-badge ${produit.stock > 0 ? 'en-stock' : 'rupture'}">
+              <i class="fas fa-${produit.stock > 0 ? 'check' : 'times'}"></i>
+              ${produit.stock > 0 ? `${produit.stock} en stock` : 'Rupture de stock'}
+            </div>
+            
+            <p class="description">${produit.description}</p>
+            
+            <div class="produit-actions-large">
+              <button class="btn btn-primary btn-lg" onclick="ajouterAuPanierProduit('${produit.id}')" 
+                      ${produit.stock === 0 ? 'disabled' : ''}>
+                <i class="fas fa-cart-plus"></i> Ajouter au panier
+              </button>
+              
+              <button class="btn btn-secondary btn-lg" onclick="commanderWhatsApp('${produit.id}')">
+                <i class="fab fa-whatsapp"></i> Commander maintenant
+              </button>
+            </div>
+            
+            ${produit.caracteristiques && produit.caracteristiques.length > 0 ? `
+              <div class="specs-section">
+                <h3><i class="fas fa-list"></i> Caractéristiques</h3>
+                <ul class="specs-list">
+                  ${produit.caracteristiques.map(spec => `<li><i class="fas fa-check"></i> ${spec}</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
+            
+            ${produit.avantages && produit.avantages.length > 0 ? `
+              <div class="specs-section">
+                <h3><i class="fas fa-thumbs-up"></i> Avantages</h3>
+                <ul class="specs-list">
+                  ${produit.avantages.map(av => `<li><i class="fas fa-plus"></i> ${av}</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
+            
+            ${produit.limitations && produit.limitations.length > 0 ? `
+              <div class="specs-section">
+                <h3><i class="fas fa-exclamation-triangle"></i> Limitations</h3>
+                <ul class="specs-list">
+                  ${produit.limitations.map(lim => `<li><i class="fas fa-minus"></i> ${lim}</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+    
+    function afficherProduitsSimilaires(produit, tousProduits) {
+      const container = document.getElementById('produits-similaires');
+      
+      if (!container) return;
+      
+      // Filtrer les produits similaires (même catégorie, différent ID)
+      const similaires = tousProduits
+        .filter(p => p.id !== produit.id && p.categorie === produit.categorie)
+        .slice(0, 4);
+      
+      if (similaires.length === 0) {
+        container.innerHTML = '<p>Aucun produit similaire trouvé.</p>';
+        return;
+      }
+      
+      container.innerHTML = similaires.map(p => `
+        <div class="produit-card">
+          <a href="produit.html?id=${p.id}" style="text-decoration: none; color: inherit;">
+            <img src="${p.images[0]}" alt="${p.nom}" class="produit-image">
+            <div class="produit-info">
+              <h3>${p.nom}</h3>
+              <div class="produit-price">${p.prix.toLocaleString()} ${p.devise}</div>
+              <button class="btn btn-sm btn-primary">Voir détails</button>
+            </div>
+          </a>
+        </div>
+      `).join('');
+    }
+    
+    function afficherErreur(message) {
+      const container = document.getElementById('produit-detail');
+      if (!container) return;
+      
+      container.innerHTML = `
+        <div class="error">
+          <i class="fas fa-exclamation-triangle"></i>
+          <h2>${message}</h2>
+          <a href="produits.html" class="btn btn-primary">Retour aux produits</a>
+        </div>
+      `;
+    }
+    
+    // Fonction pour changer l'image principale
+    function changerImagePrincipale(thumbnail, imgSrc) {
+      // Mettre à jour l'image principale
+      const mainImage = document.getElementById('main-image');
+      if (mainImage) {
+        mainImage.src = imgSrc;
+      }
+      
+      // Mettre à jour les miniatures actives
+      document.querySelectorAll('.thumbnail').forEach(t => {
+        t.classList.remove('active');
+      });
+      thumbnail.classList.add('active');
+    }
+    
+    // Rendre les fonctions disponibles globalement
+    window.ajouterAuPanier = ajouterAuPanierProduit;
+    window.commanderWhatsApp = commanderWhatsApp;
+    window.changerImagePrincipale = changerImagePrincipale;
   </script>
 </body>
 </html>
